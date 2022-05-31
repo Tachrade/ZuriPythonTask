@@ -2,37 +2,26 @@
 # Example:
 # count_words("The cake is done. It is a big cake!")
 # --> {"cake":2, "big":1, "is":2, "the":1, "a":1, "it":1}
-import string
-
 
 def read_file_content(filename):
     # [assignment] Add your code here
-    with open(filename) as f:
-        lines = f.read()
-        lines = read_file_content(filename)
-        print(lines)
-        return lines
+    with open("./story.txt","r") as f:
+        read_file = f.read()
+        #print(read_file)
+        return read_file
 
 
 def count_words():
- text = read_file_content("./story.txt").split()
+ text = read_file_content("./story.txt")
+ word_split = text.split()
 # [assignment] Add your code here
 #Create Empty Dictionary
- d = dict()
- #loop through each line
- for line in text:
-     #remove
-     line = line.strip( )
-     line = line.lower()
-     line = line.translate(str.maketrans('', '', string.punctuation))
-     words = line.split(" ")
- for word in words:
-    if word in d:
-        d[word] = d[word] + 1
+ count = {}
+ for i in word_split:
+    if i in count:
+        count[i] += 1
     else:
-         d[word] = 1
-    for key in list(d.keys()):
-        print(key, ":", d[key])
-        view = count_words()
-        print(view)
-
+         count[i] =1
+    return count
+    
+print(count_words())
